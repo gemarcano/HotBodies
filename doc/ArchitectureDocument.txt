@@ -1,0 +1,17 @@
+Architecture
+
+Layered, 3 layer
+
+View <--> Control/Logic <--> Data Access
+
+For the Control/Logic layer, Client to Server pattern. Server supplies tasks, offloads to clients.
+  If Data is a network resource, data Access can also be delegated to the Client.
+
+What about for distributed support?
+Separation of tasks is necessary.
+
+
+Some patterns to consider:
+Strategy pattern
+pimpl idom (Bridge pattern for portability (this may be overkill))
+Facade maybe between layers?

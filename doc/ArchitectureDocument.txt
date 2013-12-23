@@ -4,12 +4,7 @@ Layered, 3 layer
 
 View <--> Control/Logic <--> Data Access
 
-For the Control/Logic layer, Client to Server pattern. Server supplies tasks, offloads to clients.
-  If Data is a network resource, data Access can also be delegated to the Client.
-
-What about for distributed support?
-Separation of tasks is necessary.
-
+Threading can be handled within the Control/Logic layer. View will be on its own thread. Data access serves solely as something to translate data to its internal representation, so it should be made thread safe.
 
 Some patterns to consider:
 Strategy pattern

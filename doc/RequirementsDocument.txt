@@ -1,7 +1,7 @@
 Requirements
 
 GUI to allow for input specification
-Threaded/Distributed capable
+Threaded?
 Different algorithm support/ even external programs
 Different output forms
 Different inputs support
@@ -11,4 +11,3 @@ Software Quality Attributes
 Usability
 Efficiency
 Portability
-Interoperability

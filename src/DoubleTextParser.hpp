@@ -8,13 +8,13 @@
 class DoubleTextParser : public Parser
 {
 public:
-	DoubleTextParser(std::string*);
+	DoubleTextParser(std::string);
 	~DoubleTextParser();
 	
 	int_fast32_t* parse();
 
 private:
-	std::string *mpFilePath;
+	std::string mpFilePath;
 	
 };
 

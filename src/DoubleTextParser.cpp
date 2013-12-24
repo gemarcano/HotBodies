@@ -3,7 +3,8 @@
 #include <fstream>
 #include <sstream>
 
-DoubleTextParser::DoubleTextParser()
+DoubleTextParser::DoubleTextParser(fstream *apFile)
+:mpFile = apFile
 {
 	
 }
@@ -12,7 +13,7 @@ DoubleTextParser::~DoubleTextParser()
 {
 	
 }
-	
+
 int_fast32_t* DoubleTextParser::parse()
 {
 	int_fast32_t * image = new int [480][640];

@@ -9,7 +9,7 @@ public:
 	DoubleTextParser();
 	~DoubleTextParser();
 	
-	virtual int_fast32_t* parse();
+	int_fast32_t* parse();
 };
 
 #endif //_DOUBLETEXTPARSER_H_

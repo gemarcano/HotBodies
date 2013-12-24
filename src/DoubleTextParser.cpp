@@ -3,8 +3,8 @@
 #include <fstream>
 #include <sstream>
 
-DoubleTextParser::DoubleTextParser(fstream *apFile)
-:mpFile = apFile
+DoubleTextParser::DoubleTextParser(std::string *apFilePath)
+:mpFilePath = apFilePath
 {
 	
 }

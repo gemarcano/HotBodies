@@ -2,19 +2,19 @@
 #define _DOUBLETEXTPARSER_H_
 
 #include "Parser.hpp"
-#include <fstream>
+#include <string>
 
 
 class DoubleTextParser : public Parser
 {
 public:
-	DoubleTextParser(fstream*);
+	DoubleTextParser(std::string*);
 	~DoubleTextParser();
 	
 	int_fast32_t* parse();
 
 private:
-	std::fstream *mpFile;
+	std::string *mpFilePath;
 	
 };
 

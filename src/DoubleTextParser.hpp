@@ -5,6 +5,7 @@
 
 class DoubleTextParser : public Parser
 {
+public:
 	DoubleTextParser();
 	~DoubleTextParser();
 	

@@ -34,6 +34,9 @@ int_fast32_t* DoubleTextParser::parse()
 			string s;
 			if (!getline(holder, s, ',')
 				break;
+			size_t period = s.find('.');
+			if (period != string::npos)
+				s.erase(period);
 			image[i][j] = s;
 			j++;
 		}

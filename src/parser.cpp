@@ -1,26 +1,29 @@
-#include "DoubleTextParser.hpp"
+#include <iostream>
+#include <vector>
 #include <string>
 #include <fstream>
 #include <sstream>
 
-DoubleTextParser::DoubleTextParser()
+using namespace std;
+
+template <typename T>
+void DisplayContents (const T& Input)
 {
-	
+	for (T::const_iterator iElement = Input.begin()
+			; iElement != Input.end()
+			; ++iElement)
+		cout << *iElement << ' ';
+	cout << endl;
 }
 
-DoubleTextParser::~DoubleTextParser()
+int main()
 {
-	
-}
-	
-int_fast32_t* DoubleTextParser::parse()
-{
-	int_fast32_t * image = new int [480][640];
+	int * image = new int [480][640];
 
 	ifstream img_file ("stuff.txt");
 
-	int_fast32_t i = 0;
-	int_fast32_t j = 0;
+	int i = 0;
+	int j = 0;
 	while (img_file)
 	{
 		string s;
@@ -41,5 +44,4 @@ int_fast32_t* DoubleTextParser::parse()
 
 
 	}	
-	return (int_fast32_t*)(0); 
 }

@@ -5,3 +5,9 @@ Internal data will be some container of at least 32-bit integers.
 Data Access
 
 External -> Parser > Data
+
+Strategy pattern
+
+We have two options:
+  Abstract Factory
+  Dependency Injection (*)

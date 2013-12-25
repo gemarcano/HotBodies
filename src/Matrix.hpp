@@ -1,7 +1,7 @@
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
-#include <string>
+#include <vector>
 
 template <class T>
 class Matrix

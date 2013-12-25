@@ -3,19 +3,21 @@
 
 #include "Parser.hpp"
 #include <string>
-
+#include <vector>
+#include "Matrix.hpp"
+#include <memory>
 
 class DoubleTextParser : public Parser
 {
 public:
 	DoubleTextParser(std::string);
 	~DoubleTextParser();
-	
-	int_fast32_t* parse();
+
+	std::unique_ptr<Matrix<int_fast32_t> > parse();
 
 private:
 	std::string mpFilePath;
-	
+
 };
 
 #endif //_DOUBLETEXTPARSER_H_

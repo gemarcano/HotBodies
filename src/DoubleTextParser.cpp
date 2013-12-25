@@ -4,48 +4,58 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <memory>
 
 DoubleTextParser::DoubleTextParser(std::string apFilePath)
-:mpFilePath = apFilePath
-{
-	
-}
+:mpFilePath(apFilePath)
+{}
 
 DoubleTextParser::~DoubleTextParser()
-{
-	
-}
+{}
 
-int_fast32_t* DoubleTextParser::parse()
+std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 {
 
 	ifstream file (mpFilePath, ios::in);
 
 	int_fast32_t i = 0;
 	int_fast32_t j = 0;
-	Matrix<int_fast32_t> myMatrix(480, 640);
 
 	if (file.is_open())
 	{
 		string s;
+		int rows = 0;
+		while(getline(file, s))
+		{
+			int columns = 0;
+			++rows;
+			istringstream buffer(s);
+
+			while(getline(buffer, s, ','))
+			{
+				string s;
+				++columns;
+			}
+
+		}
+		
+		std::unique_ptr<Matrix<int_fast32_t> > pimage (new Matrix<int_fast32_t> (rows, columns));
+
 		while (getline(file, s))
 		{
 			istringstream holder(s);
 
-			while (holder)
+			while (getline(holder, s, ',')
 			{
-				string s;
-				if (!getline(holder, s, ',')
-					break;
 				size_t period = s.find('.');
 				if (period != string::npos)
 					s.erase(period);
-				myMatrix(i, j) = s;
+				(*pimage) (i, j) = s;
 				j++;
 			}
 			i++;
 		}
 		file.close();	
 	}
-	return (int_fast32_t*)(0); 
+	return pimage; 
 }

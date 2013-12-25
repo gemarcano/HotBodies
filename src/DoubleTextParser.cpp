@@ -17,7 +17,7 @@ DoubleTextParser::~DoubleTextParser()
 
 int_fast32_t* DoubleTextParser::parse()
 {
-	int_fast32_t * image = new int [480][640];
+	int_fast32_t * image = new int_fast32_t [480][640];
 
 	ifstream file (mpFilePath, ios::in);
 

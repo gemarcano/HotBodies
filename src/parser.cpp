@@ -1,34 +1,33 @@
-#include <iostream>
-#include <vector>
+#include "DoubleTextParser.hpp"
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
-using namespace std;
-
-template <typename T>
-void DisplayContents (const T& Input)
+DoubleTextParser::DoubleTextParser(std::string apFilePath)
+:mpFilePath = apFilePath
 {
-	for (T::const_iterator iElement = Input.begin()
-			; iElement != Input.end()
-			; ++iElement)
-		cout << *iElement << ' ';
-	cout << endl;
+	
 }
 
-int main()
+DoubleTextParser::~DoubleTextParser()
 {
-	int * image = new int [480][640];
+	
+}
 
-	ifstream img_file ("stuff.txt");
+int_fast32_t* DoubleTextParser::parse()
+{
+	int_fast32_t * image = new int_fast32_t [480][640];
 
-	int i = 0;
-	int j = 0;
-	while (img_file)
+	ifstream file (mpFilePath, ios::in);
+
+	int_fast32_t i = 0;
+	int_fast32_t j = 0;
+	while (file.is_open())
 	{
 		string s;
 		/*read into image considering parsing by commas for rows and newlines for columns*/
-		if (!getline(img_file, s))
+		if (!getline(file, s))
 			break;
 		istringstream holder(s);
 
@@ -37,11 +36,15 @@ int main()
 			string s;
 			if (!getline(holder, s, ',')
 				break;
+			size_t period = s.find('.');
+			if (period != string::npos)
+				s.erase(period);
 			image[i][j] = s;
 			j++;
 		}
 		i++;
-
-
+	
 	}	
+	file.close();
+	return (int_fast32_t*)(image); 
 }

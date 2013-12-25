@@ -1,6 +1,8 @@
 #ifndef _PARSER_H_
 
 #include <stdint.h>
+#include <memory>
+#include "Matrix.hpp"
 
 class Parser
 {
@@ -8,7 +10,7 @@ class Parser
 public:
 	
 	virtual ~Parser() {} ;
-	virtual int_fast32_t* parse() = 0;
+	virtual std::unique_ptr<Matrix<int_fast32_t> > parse() = 0;
 };
 
 #define _PARSER_H_

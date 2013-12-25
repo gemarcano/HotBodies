@@ -12,12 +12,12 @@ prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
 
-CXXFLAGS = -g -O2
+CXXFLAGS = -g -O2 -Wall -Wextra -std=c++0x
 
 all: hotbodies
 
-hotbodies: main.o DoubleTextParser.o DoubleTextParserFactory.o
-	$(CXX) $(CXXFLAGS) -o $@ $(srcdir)/main.o $(srcdir)/DoubleTextParser.o $(srcdir)/DoubleTextParserFactory.o
+hotbodies: main.o DoubleTextParser.o DoubleTextParserFactory.o Matrix.o
+	$(CXX) $(CXXFLAGS) -o $@ $(srcdir)/main.o $(srcdir)/Matrix.o $(srcdir)/DoubleTextParser.o $(srcdir)/DoubleTextParserFactory.o
 
 DoubleTextParser.o: DoubleTextParser.cpp DoubleTextParser.hpp
 DoubleTextParserFactory.o: DoubleTextParserFactory.cpp DoubleTextParserFactory.hpp

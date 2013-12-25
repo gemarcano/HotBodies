@@ -1,4 +1,5 @@
 #include "DoubleTextParser.hpp"
+#include "Matrix.hpp"
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -17,34 +18,34 @@ DoubleTextParser::~DoubleTextParser()
 
 int_fast32_t* DoubleTextParser::parse()
 {
-	int_fast32_t * image = new int_fast32_t [480][640];
 
 	ifstream file (mpFilePath, ios::in);
 
 	int_fast32_t i = 0;
 	int_fast32_t j = 0;
-	while (file.is_open())
+	Matrix<int_fast32_t> myMatrix(480, 640);
+
+	if (file.is_open())
 	{
 		string s;
-		/*read into image considering parsing by commas for rows and newlines for columns*/
-		if (!getline(file, s))
-			break;
-		istringstream holder(s);
-
-		while (holder)
+		while (getline(file, s))
 		{
-			string s;
-			if (!getline(holder, s, ',')
-				break;
-			size_t period = s.find('.');
-			if (period != string::npos)
-				s.erase(period);
-			image[i][j] = s;
-			j++;
+			istringstream holder(s);
+
+			while (holder)
+			{
+				string s;
+				if (!getline(holder, s, ',')
+					break;
+				size_t period = s.find('.');
+				if (period != string::npos)
+					s.erase(period);
+				myMatrix(i, j) = s;
+				j++;
+			}
+			i++;
 		}
-		i++;
-	
-	}	
-	file.close();
-	return (int_fast32_t*)(image); 
+		file.close();	
+	}
+	return (int_fast32_t*)(0); 
 }

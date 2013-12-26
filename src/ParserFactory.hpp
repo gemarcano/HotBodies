@@ -2,14 +2,15 @@
 #define _PARSERFACTORY_H_
 
 #include "Parser.hpp"
+#include <memory>
 
 class ParserFactory
 {
 public:
-	ParserFactory() = 0;
+	ParserFactory();
 	virtual ~ParserFactory() {};
   
-	virtual Parser* createParser() = 0;
+	virtual std::unique_ptr<Parser> createParser() = 0;
 };
 
 #endif //_PARSERFACTORY_H_

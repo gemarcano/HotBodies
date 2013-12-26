@@ -8,7 +8,6 @@ class Parser
 {
 	
 public:
-	
 	virtual ~Parser() {} ;
 	virtual std::unique_ptr<Matrix<int_fast32_t> > parse() = 0;
 };

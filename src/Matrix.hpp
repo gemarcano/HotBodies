@@ -9,7 +9,7 @@ class Matrix
 public:
 	Matrix<T>(unsigned int d1, unsigned int d2);
 	Matrix<T>(const Matrix<T>& aMatrix);
-	~Matrix();
+	~Matrix<T>();
 
 	T& operator()(int i, int j);
 

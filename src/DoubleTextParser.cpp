@@ -16,24 +16,24 @@ DoubleTextParser::~DoubleTextParser()
 std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 {
 
-	ifstream file (mpFilePath, ios::in);
+	std::ifstream file (mpFilePath, std::ios::in);
 
 	int_fast32_t i = 0;
 	int_fast32_t j = 0;
 
 	if (file.is_open())
 	{
-		string s;
+		std::string s;
 		int rows = 0;
 		while(getline(file, s))
 		{
 			int columns = 0;
 			++rows;
-			istringstream buffer(s);
+			std::istringstream buffer(s);
 
-			while(getline(buffer, s, ','))
+			while(std::getline(buffer, s, ','))
 			{
-				string s;
+				std::string s;
 				++columns;
 			}
 
@@ -41,14 +41,14 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 		
 		std::unique_ptr<Matrix<int_fast32_t> > pimage (new Matrix<int_fast32_t> (rows, columns));
 
-		while (getline(file, s))
+		while (std::getline(file, s))
 		{
-			istringstream holder(s);
+			std::istringstream holder(s);
 
-			while (getline(holder, s, ',')
+			while (std::getline(holder, s, ',')
 			{
-				size_t period = s.find('.');
-				if (period != string::npos)
+				std::size_t period = s.find('.');
+				if (period != std::string::npos)
 					s.erase(period);
 				(*pimage) (i, j) = s;
 				j++;

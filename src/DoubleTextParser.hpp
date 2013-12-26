@@ -11,9 +11,9 @@ class DoubleTextParser : public Parser
 {
 public:
 	DoubleTextParser(std::string);
-	~DoubleTextParser();
+	virtual ~DoubleTextParser();
 
-	std::unique_ptr<Matrix<int_fast32_t> > parse();
+	virtual std::unique_ptr<Matrix<int_fast32_t> > parse();
 
 private:
 	std::string mpFilePath;

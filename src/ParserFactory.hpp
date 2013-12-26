@@ -7,7 +7,7 @@
 class ParserFactory
 {
 public:
-	ParserFactory();
+	ParserFactory() {};
 	virtual ~ParserFactory() {};
   
 	virtual std::unique_ptr<Parser> createParser() = 0;

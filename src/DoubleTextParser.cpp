@@ -27,19 +27,20 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 	{
 		std::string s;
 		int rows = 0;
-		int columns;
+		int columns = 0;
 
 		while(std::getline(file, s))
 		{
-			columns = 0;
 			++rows;
-			std::istringstream buffer(s);
 
-			while(std::getline(buffer, s, ','))
+			if (rows == 1)
 			{
-				std::string s;
-				++columns;
-			}
+				std::istringstream buffer(s);
+				while(std::getline(buffer, s, ','))
+				{
+					++columns;
+				}
+			}	
 
 		}
 		

@@ -1,11 +1,12 @@
 #include "DoubleTextParserFactory.hpp"
+#include "DoubleTextParser.hpp"
 
 DoubleTextParserFactory::DoubleTextParserFactory() {};
 DoubleTextParserFactory::~DoubleTextParserFactory() {};
  
-Parser* DoubleTextParserFactory::createParser()
+std::unique_ptr<Parser> DoubleTextParserFactory::createParser()
 {	
-	return (Parser*)(0);
+	return std::unique_ptr<Parser>(new DoubleTextParser(""));
 }
 
 

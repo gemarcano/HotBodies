@@ -3,14 +3,15 @@
 
 #include "ParserFactory.hpp"
 #include "Parser.hpp"
+#include <memory>
 
 class DoubleTextParserFactory : public ParserFactory
 {
 public:
 	DoubleTextParserFactory();
-	~DoubleTextParserFactory() {};
+	virtual ~DoubleTextParserFactory();
   
-	Parser* createParser();
+	virtual std::unique_ptr<Parser> createParser();
 };
 
 #endif //_DOUBLETEXTPARSERFACTORY_H_

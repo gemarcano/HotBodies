@@ -25,9 +25,10 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 	{
 		std::string s;
 		int rows = 0;
-		while(getline(file, s))
+		int columns;
+		while(std::getline(file, s))
 		{
-			int columns = 0;
+			columns = 0;
 			++rows;
 			std::istringstream buffer(s);
 
@@ -45,7 +46,7 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 		{
 			std::istringstream holder(s);
 
-			while (std::getline(holder, s, ',')
+			while (std::getline(holder, s, ','))
 			{
 				std::size_t period = s.find('.');
 				if (period != std::string::npos)

@@ -1,0 +1,57 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3732472275/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3732472275.dir/build.make CMakeFiles/cmTryCompileExec3732472275.dir/build
+gmake[1]: Entering directory '/mnt/Media/home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3732472275.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3732472275.dir/CheckSymbolExists.c.o   -c /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3732472275
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3732472275.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3732472275.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3732472275 -rdynamic 
+CMakeFiles/cmTryCompileExec3732472275.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec3732472275.dir/build.make:91: recipe for target 'cmTryCompileExec3732472275' failed
+gmake[1]: *** [cmTryCompileExec3732472275] Error 1
+gmake[1]: Leaving directory '/mnt/Media/home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp'
+Makefile:117: recipe for target 'cmTryCompileExec3732472275/fast' failed
+gmake: *** [cmTryCompileExec3732472275/fast] Error 2
+
+File /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2575676581/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2575676581.dir/build.make CMakeFiles/cmTryCompileExec2575676581.dir/build
+gmake[1]: Entering directory '/mnt/Media/home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2575676581.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec2575676581.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2575676581
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2575676581.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec2575676581.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2575676581 -rdynamic -lpthreads 
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.8.2/../../../../x86_64-pc-linux-gnu/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTryCompileExec2575676581.dir/build.make:91: recipe for target 'cmTryCompileExec2575676581' failed
+gmake[1]: *** [cmTryCompileExec2575676581] Error 1
+gmake[1]: Leaving directory '/mnt/Media/home/gabriel/Projects/Programming/HotBodies/test/gtest-1.7.0/CMakeFiles/CMakeTmp'
+Makefile:117: recipe for target 'cmTryCompileExec2575676581/fast' failed
+gmake: *** [cmTryCompileExec2575676581/fast] Error 2
+
+

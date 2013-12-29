@@ -20,6 +20,7 @@ AC_PROG_INSTALL
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdint.h])
 AC_TYPE_INT32_T
+AC_SEARCH_LIBS([pthread_create], [pthread])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T

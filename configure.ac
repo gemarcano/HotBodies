@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([hotbodies], [0.1], [BUG-REPORT-ADDRESS])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([-Wall -Werror])
 AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
@@ -11,6 +11,8 @@ AC_CONFIG_HEADERS([config.h])
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_INSTALL
+#AC_PROG_RANLIB
+
 
 # Checks for libraries.
 
@@ -25,5 +27,8 @@ AC_TYPE_SIZE_T
 # Checks for library functions.
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/Makefile
+                 test/Makefile])
+#AC_CONFIG_SUBDIRS([test/gtest-1.7.0])
+
 AC_OUTPUT

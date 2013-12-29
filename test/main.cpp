@@ -1,9 +1,13 @@
 #include <iostream>
 #include <gtest/gtest.h>
+#include <DoubleTextParser.hpp>
+#include <memory>
 
-TEST(CHECKTEST, TEST0)
+TEST(CHECKDOUBLETEXTPARSER, TEST0)
 {
-	EXPECT_EQ(1,0);
+	DoubleTextParser parser("simpleData.txt");
+	std::unique_ptr<Matrix<int_fast32_t>> pResult = parser.parse();
+	EXPECT_EQ((*pResult)(0,0),200);
 }
 
 int main (int argc, char *argv[])

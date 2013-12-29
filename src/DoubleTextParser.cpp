@@ -18,34 +18,38 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 
 	std::ifstream file (mpFilePath, std::ios::in);
 
-	int_fast32_t i = 0;
-	int_fast32_t j = 0;
-
 	std::unique_ptr<Matrix<int_fast32_t> > pimage = NULL;
 
 	if (file.is_open())
 	{
 		std::string s;
-		int rows = 0;
-		int columns = 0;
+		int_fast32_t rows = 0;
+		int_fast32_t columns = 0;
 
-		while(std::getline(file, s))
+		if(std::getline(file, s))
 		{
-			++rows;
-
-			if (rows == 1)
+			rows++;
+			columns++;
+			std::istringstream buffer(s);
+			while(std::getline(buffer, s, ','))
 			{
-				std::istringstream buffer(s);
-				while(std::getline(buffer, s, ','))
-				{
-					++columns;
-				}
-			}	
+				++columns;
+			}
+			
+			while(std::getline(file, s))
+			{
+				rows++;
+			}
 
 		}
 		
 		pimage = std::unique_ptr<Matrix<int_fast32_t> > (new Matrix<int_fast32_t> (rows, columns));
 
+		//Shouldn't these be for loops?
+		int_fast32_t i = 0;
+		int_fast32_t j = 0;
+		file.clear();
+		file.seekg(0, file.beg);
 		while (std::getline(file, s))
 		{
 			std::istringstream holder(s);
@@ -54,11 +58,13 @@ std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 			{
 				std::size_t period = s.find('.');
 				if (period != std::string::npos)
-					s.erase(period);
+					s.erase(period,1);
+				std::cerr << i << " " << j << "\n";
 				std::stringstream(s) >> (*pimage) (i, j);
 				j++;
 			}
 			i++;
+			j = 0;
 		}
 		file.close();	
 	}

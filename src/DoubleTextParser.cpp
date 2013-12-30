@@ -13,60 +13,81 @@ DoubleTextParser::DoubleTextParser(std::string apFilePath)
 DoubleTextParser::~DoubleTextParser()
 {}
 
+std::vector<std::string> getFileRows(std::ifstream& aFile)
+{
+	std::vector<std::string> result;
+	if (aFile.is_open())
+	{
+		std::string data;
+		while(aFile.good())
+		{
+			getline(aFile, data);
+			result.push_back(data);
+		}
+		aFile.close();
+	}
+	
+	return result;
+}
+
+std::vector<std::string> split(const std::string& aString, char aDelim)
+{
+	std::vector<std::string> result;
+	std::stringstream ss(aString);
+	std::string data;
+	
+	while (ss.good())
+	{
+		getline(ss, data, aDelim);
+		result.push_back(data);
+	}
+	return result;
+}
+
+std::string deleteInstances(const std::string& aString, char aInst)
+{
+	std::string result = aString;
+	size_t pos = result.find(aInst);
+	while (pos != std::string::npos)
+	{
+		result.erase(pos,1);
+		pos = result.find(aInst);
+	}
+	return result;
+}
+
 std::unique_ptr<Matrix<int_fast32_t> > DoubleTextParser::parse()
 {
 
 	std::ifstream file (mpFilePath, std::ios::in);
-
-	std::unique_ptr<Matrix<int_fast32_t> > pimage = NULL;
-
-	if (file.is_open())
+	std::unique_ptr<Matrix<int_fast32_t> > pImage = NULL;
+	std::vector<std::string> dataRows = getFileRows(file);
+	
+	if (!dataRows.empty())
 	{
-		std::string s;
-		int_fast32_t rows = 0;
-		int_fast32_t columns = 0;
-
-		if(std::getline(file, s))
-		{
-			rows++;
-			columns++;
-			std::istringstream buffer(s);
-			while(std::getline(buffer, s, ','))
-			{
-				++columns;
-			}
-			
-			while(std::getline(file, s))
-			{
-				rows++;
-			}
-
-		}
+		std::vector<std::string> splitRow(split(dataRows[0], ','));
 		
-		pimage = std::unique_ptr<Matrix<int_fast32_t> > (new Matrix<int_fast32_t> (rows, columns));
-
-		//Shouldn't these be for loops?
-		int_fast32_t i = 0;
-		int_fast32_t j = 0;
-		file.clear();
-		file.seekg(0, file.beg);
-		while (std::getline(file, s))
-		{
-			std::istringstream holder(s);
-
-			while (std::getline(holder, s, ','))
-			{
-				std::size_t period = s.find('.');
-				if (period != std::string::npos)
-					s.erase(period,1);
-				std::cerr << i << " " << j << "\n";
-				std::stringstream(s) >> (*pimage) (i, j);
-				j++;
-			}
-			i++;
-			j = 0;
+		size_t rows = 0, columns = 0;
+		rows = dataRows.size();
+		columns = splitRow.size();
+		
+		pImage = std::unique_ptr<Matrix<int_fast32_t> > (new Matrix<int_fast32_t> (rows, columns));
+		
+		for (size_t j = 0; j < columns; j++)
+		{			
+			std::istringstream(deleteInstances(splitRow[j], '.'))
+				>> (*pImage)(0, j);
 		}
-		file.close();	
+
+		for (size_t i = 1; i < rows; i++)
+		{
+			splitRow = split(dataRows[i], ',');
+			for (size_t j = 0; j < columns; j++)
+			{
+				std::istringstream(deleteInstances(splitRow[j], '.'))
+					>> (*pImage)(i, j);
+			}
+		}
 	}
-	return pimage; 
+	return pImage; 
 }

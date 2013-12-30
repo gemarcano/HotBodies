@@ -7,7 +7,14 @@ TEST(CHECKDOUBLETEXTPARSER, TEST0)
 {
 	DoubleTextParser parser("simpleData.txt");
 	std::unique_ptr<Matrix<int_fast32_t>> pResult = parser.parse();
-	EXPECT_EQ((*pResult)(0,0),200);
+	EXPECT_EQ(200, (*pResult)(0,0));
+}
+
+TEST(CHECKDOUBLETEXTPARSER, TEST1)
+{
+	DoubleTextParser parser("simpleData2.txt");
+	std::unique_ptr<Matrix<int_fast32_t>> pResult = parser.parse();
+	EXPECT_EQ(10000,(*pResult)(0,0));
 }
 
 int main (int argc, char *argv[])

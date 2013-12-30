@@ -6,17 +6,19 @@
 #include <vector>
 #include "Matrix.hpp"
 #include <memory>
+#include "DoubleTextParserImpl.hpp"
 
 class DoubleTextParser : public Parser
 {
 public:
-	DoubleTextParser(std::string);
+	//DoubleTextParser(std::string);
+	DoubleTextParser(std::unique_ptr<DoubleTextParserImpl>&);
 	virtual ~DoubleTextParser();
 
 	virtual std::unique_ptr<Matrix<int_fast32_t> > parse();
 
 private:
-	std::string mpFilePath;
+	std::unique_ptr<DoubleTextParserImpl> mpImpl;
 
 };
 

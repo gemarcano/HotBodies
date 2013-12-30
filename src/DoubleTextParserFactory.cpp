@@ -1,12 +1,17 @@
 #include "DoubleTextParserFactory.hpp"
 #include "DoubleTextParser.hpp"
+#include <memory>
 
-DoubleTextParserFactory::DoubleTextParserFactory() {};
-DoubleTextParserFactory::~DoubleTextParserFactory() {};
+DoubleTextParserFactory::DoubleTextParserFactory(const std::string& aFilePath)
+:mFilePath(aFilePath)
+{}
+
+DoubleTextParserFactory::~DoubleTextParserFactory()
+{}
  
 std::unique_ptr<Parser> DoubleTextParserFactory::createParser()
-{	
-	return std::unique_ptr<Parser>(new DoubleTextParser(""));
+{
+	std::unique_ptr<DoubleTextParserImpl> pImpl
+		(new DoubleTextParserImpl(mFilePath));
+	return std::unique_ptr<Parser>(new DoubleTextParser(pImpl));
 }
-
-
